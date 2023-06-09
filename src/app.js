@@ -1,6 +1,6 @@
-import express from 'express';
-import db from './config/database.js';
-import routes from './routes/index.js';
+const express = require('express');
+const db = require('./config/database.js');
+const routes = require('./routes/index.js');
 
 db.on('error', console.error.bind(console, 'Database connection error'));
 db.once('open', () => {
@@ -9,6 +9,8 @@ db.once('open', () => {
 
 const app = express();
 
+app.use(express.json());
+
 routes(app);
 
-export default app;
+module.exports = app;

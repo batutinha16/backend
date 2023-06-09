@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
 const HealthcheckSchema = new Schema(
     {
@@ -9,4 +9,4 @@ const HealthcheckSchema = new Schema(
 
 const healthcheck = model('healthcheck', HealthcheckSchema);
 
-export default healthcheck;
+module.exports = healthcheck;

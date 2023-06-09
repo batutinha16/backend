@@ -1,5 +1,5 @@
-import express from 'express';
-import healthcheckRouter from './healthcheckRoutes.js';
+const express = require('express');
+const healthcheckRouter = require('./healthcheckRoutes.js');
 
 const routes = (app) => {
   app.route('/').get((request, response) => {
@@ -11,4 +11,4 @@ const routes = (app) => {
   app.use(express.json(), healthcheckRouter);
 };
 
-export default routes;
+module.exports = routes;
