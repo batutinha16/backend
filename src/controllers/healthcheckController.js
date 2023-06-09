@@ -1,4 +1,4 @@
-import HealthcheckService from '../services/healthcheckService.js';
+const HealthcheckService = require('../services/healthcheckService.js');
 
 class HealthcheckController {
   static healthcheck = async (request, response) => {
@@ -11,4 +11,4 @@ class HealthcheckController {
   };
 }
 
-export default HealthcheckController;
+module.exports = HealthcheckController;
