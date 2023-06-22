@@ -4,9 +4,33 @@ module.exports = {
       tags: ['Internos'],
       description: 'Health Check',
       operationId: 'healthcheck',
-      parameters: [],
+      parameters: [
+        {
+          in: 'header',
+          name: 'X-Request-ID',
+          schema: {
+            type: 'string',
+            format: 'uuid',
+          },
+          required: true,
+        },
+      ],
+      requestBody: {
+        content: {
+          'application/x-www-form-urlencoded': {
+            schema: {
+              '$ref': '#/components/schemas/healthcheckBody',
+            },
+          },
+          'application/json': {
+            schema: {
+              '$ref': '#/components/schemas/healthcheckBody',
+            },
+          },
+        },
+      },
       responses: {
-        '200': {
+        200: {
           description: 'Informa a saúde da aplicação',
           content: {
             'application/json': {
@@ -28,8 +52,27 @@ module.exports = {
             },
           },
         },
+        422: {
+          description: 'Erros de validação',
+          content: {
+            'application/json': {
+              schema: {
+                '$ref': '#/components/schemas/error422',
+              },
+            },
+          },
+        },
+        500: {
+          description: 'Erros internos',
+          content: {
+            'application/json': {
+              schema: {
+                '$ref': '#/components/schemas/error5xx',
+              },
+            },
+          },
+        },
       },
     },
   },
 };
-
